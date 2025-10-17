@@ -1,0 +1,317 @@
+/* ===== Reset & Body ===== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: Arial, sans-serif;
+    background: #fff;
+    color: #000;
+}
+
+/* ===== Header ===== */
+header {
+    background-color: #ff0000;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 20px;
+}
+header .menu { position: relative; margin-right: 20px; }
+header .menu-btn {
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+header .dropdown {
+    display: none;
+    position: absolute;
+    background-color: #ff0000;
+    min-width: 150px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+header .dropdown a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+header .dropdown a:hover { background-color: #cc0000; }
+header .search-bar {
+    flex-grow: 1;
+    margin: 0 20px;
+}
+header .search-bar input {
+    width: 100%;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+}
+header .login { margin-left: 10px; }
+header .login a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* ===== Banner 3 ảnh ===== */
+:root {
+    --img-width: 26vw;         /* mỗi ảnh rộng 26% màn hình (≈ 80% tổng cho 3 ảnh + overlap) */
+    --img-ratio: 16/9;         /* tỉ lệ ngang */
+    --overlap: 30%;            /* phần ảnh giữa đè 30% */
+}
+
+.banner {
+    background: #000;
+    padding-top: calc(var(--img-width) / (var(--img-ratio)) * 0.3); /* chừa chỗ cho ảnh bên tụt xuống */
+}
+
+.banner-images {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 80vw;
+    margin: 0 auto;
+    position: relative;
+    gap: 0;
+}
+
+/* Mỗi khối gồm tiêu đề + ảnh */
+.img-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+/* Hộp ảnh */
+.img-box {
+    width: var(--img-width);
+    aspect-ratio: var(--img-ratio);
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+    position: relative;
+    transition: transform .35s, z-index .2s, opacity .35s;
+}
+.img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Ảnh giữa đè lên 30% */
+.center {
+    position: relative;
+    z-index: 2;
+    /* Không cần translateY, để ảnh giữa nằm thẳng hàng đáy */
+}
+.center .img-box {
+    width: calc(var(--img-width) * 1.1);  /* ảnh giữa to hơn ~10% */
+}
+
+
+/* Hai ảnh bên tụt xuống 30% để lộ phần dưới */
+.side {
+    transform: translateY(0);
+}
+
+/* ===== Tiêu đề ===== */
+.img-title {
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 0 8px rgba(0,0,0,0.7);
+    margin: 8px 0;
+}
+
+/* Tiêu đề cho ảnh giữa (dưới ảnh) */
+.img-title.bottom {
+    margin-top: 8px;
+}
+
+/* Tiêu đề cho hai ảnh bên (trên ảnh, nhưng bên ngoài) */
+.img-title.top {
+    margin-bottom: 8px;
+}
+
+/* Hover: nổi bật */
+.img-box:hover {
+    transform: scale(1.06);
+    z-index: 3;
+}
+.banner-images:hover .img-box:not(:hover) {
+    opacity: 0.65;
+}
+
+/* ===== Content & Footer giữ nguyên ===== */
+.content {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    width: 80%;
+    margin: 0 auto;
+}
+.content .item { width: 48%; text-align: center; margin: 0 1%; }
+.content .item img { max-width: 100%; height: auto; }
+.content .item .category { color: #666; margin: 10px 0; }
+.content .item a {
+    background-color: #ff0000;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+footer {
+    background-color: #ff0000;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+footer .about { flex-grow: 1; }
+footer .social a { margin: 0 10px; }
+footer .social img { width: 20px; height: 20px; }
+footer .phone { text-align: right; }
+/* ===== Top Players ===== */
+.top-players, .top-clubs, .news {
+  padding: 40px 10%;
+  background: #f9f9f9;
+  text-align: center;
+}
+.top-players h2, .top-clubs h2, .news h2 {
+  margin-bottom: 20px;
+  color: #ff0000;
+}
+
+/* Grid players */
+.players-grid, .clubs-grid, .news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+.player-card, .club-card, .news-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 15px;
+  transition: transform 0.3s;
+}
+.player-card img, .club-card img, .news-card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+.player-card:hover, .club-card:hover, .news-card:hover {
+  transform: translateY(-6px);
+}
+/* ===== Đồng bộ tỷ lệ ảnh cho Cầu thủ & CLB ===== */
+.player-card img, 
+.club-card img {
+  width: 100%;
+  aspect-ratio: 4/3;       /* hoặc đổi thành 1/1 nếu muốn ảnh vuông */
+  object-fit: cover;       /* cắt ảnh vừa khung mà không bị méo */
+  border-radius: 10px;
+}
+
+/* Tin tức cũng cho đồng bộ nếu muốn */
+.news-card img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.player-card img {
+  width: 100%;
+  aspect-ratio: 3/4;     /* khung dọc: cao hơn rộng */
+  object-fit: cover;     /* cắt ảnh vừa khung */
+  border-radius: 10px;
+}
+
+/* ===== Top Clubs (ảnh ngang) ===== */
+.club-card img {
+  width: 100%;
+  aspect-ratio: 4/3;     /* khung ngang: rộng hơn cao */
+  object-fit: cover;
+  border-radius: 10px;
+}
+.player-card h4,
+.club-card h4 {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #444;
+}
+
+.see-more {
+  display: inline-block;
+  margin-top: 5px;
+  font-size: 13px;
+  color: #007BFF;
+  text-decoration: none;
+}
+
+.see-more:hover {
+  text-decoration: underline;
+}
+footer {
+  margin-top: 50px;
+  padding: 30px;
+  background: hsl(0, 0%, 100%);
+  color: hsl(0, 0%, 0%);
+  text-align: center;
+  font-size: 14px;
+}
+
+footer h3, footer h4 {
+  margin-bottom: 10px;
+  color: hsl(0, 0%, 0%);
+}
+
+footer a {
+  color: #00aced;
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+.contact-info p {
+  margin: 5px 0;
+}
+
+.copy {
+  margin-top: 20px;
+  font-size: 12px;
+  color: #888;
+}
+.social-links {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.social-links img {
+  border-radius: 50px;
+  width: 40px;     /* kích thước icon */
+  height: 40px;
+  margin: 0 10px;
+  transition: transform 0.3s;
+}
+
+.social-links img:hover {
+  transform: scale(1.2);
+}
+
